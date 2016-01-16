@@ -6,25 +6,25 @@
 import Foundation
 
 public final class Request {
-    
+
     private let task: NSURLSessionTask
-    
+
     public var isRunning: Bool {
         return task.state == NSURLSessionTaskState.Running
     }
-    
+
     public var isFinished: Bool {
         return task.state == NSURLSessionTaskState.Completed
     }
-    
+
     public var isCanceling: Bool {
         return task.state == NSURLSessionTaskState.Canceling
     }
-    
+
     init(task: NSURLSessionTask) {
         self.task = task
     }
-    
+
     public func cancel() -> Self {
         task.cancel()
         return self

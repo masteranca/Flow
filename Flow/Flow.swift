@@ -8,40 +8,48 @@
 
 import Foundation
 
-
 public final class Flow {
-    
+
     private let session: NSURLSession
-    
+
     public convenience init() {
         self.init(session: NSURLSession.sharedSession())
     }
-    
+
     public convenience init(configuration: NSURLSessionConfiguration) {
         let session = NSURLSession(configuration: configuration)
         self.init(session: session)
     }
-    
+
     public init(session: NSURLSession) {
         self.session = session
     }
-    
+
     public func target(url: String) -> Target {
         return Target(url: url, session: session)
     }
 
-    deinit {
+    func invalidateSession() {
         self.session.invalidateAndCancel()
     }
 }
 
-// MARK: FlowError
+public enum Result<T> {
 
-public enum FlowError: ErrorType {
+    case Success(T?, NSHTTPURLResponse)
+    case CommunicationError(ErrorType?)
+    case UnsupportedResponse(NSURLResponse?)
+    case ParseError(ErrorType?)
+    case ClientError(NSHTTPURLResponse)
+    case ServerError(NSHTTPURLResponse)
+    case UnsupportedStatusCode(NSHTTPURLResponse)
 
-    case CommunicationError(NSError?, NSURLResponse?)
-    case ErrorResponse(NSError?, NSURLResponse?)
-    case ParseError(NSError?)
+    public func isSuccess() -> Bool {
+        switch self {
+            case .Success: return true
+            default: return false
+        }
+    }
 }
 
 
@@ -51,5 +59,9 @@ public extension NSHTTPURLResponse {
 
     public func isSuccessResponse() -> Bool {
         return (self.statusCode / 100) == 2
+    }
+
+    public func headerValueForKey(key: String) -> String {
+        return self.allHeaderFields[key] as! String
     }
 }

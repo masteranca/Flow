@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.platform = :ios, "9.1"
   spec.requires_arc = true
   spec.source = { git: "https://github.com/masteranca/Flow.git", tag: "v#{spec.version}", submodules: true }
-  spec.source_files = "RGB/**/*.{h,swift}"
+  spec.source_files = "Flow/**/*.{h,swift}"
 
-  spec.dependency "SwiftyJSON", "~> 2.3.3"
+  spec.dependency "SwiftyJSON", "~> 2.3.2"
 end
