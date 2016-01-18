@@ -150,7 +150,7 @@ public final class Target {
                 }
             } else {
                 Queue.main() {
-                    callback(nil, FlowError.ErrorResponse(error, response))
+                    callback(nil, .ErrorResponse(error, response))
                 }
             }
         }

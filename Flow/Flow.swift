@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public final class Flow {
     
     private let session: NSURLSession
@@ -29,8 +28,8 @@ public final class Flow {
     public func target(url: String) -> Target {
         return Target(url: url, session: session)
     }
-
-    deinit {
+    
+    func invalidateSession() {
         self.session.invalidateAndCancel()
     }
 }
