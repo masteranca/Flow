@@ -5,7 +5,7 @@
 
 import Foundation
 
-public final class Request {
+public final class FlowRequest {
 
     private let task: NSURLSessionTask
 
@@ -25,7 +25,7 @@ public final class Request {
         self.task = task
     }
 
-    public func cancel() -> Self {
+    public func cancel() -> FlowRequest {
         task.cancel()
         return self
     }

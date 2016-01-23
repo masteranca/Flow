@@ -25,8 +25,8 @@ public final class Flow {
         self.session = session
     }
 
-    public func target(url: String) -> Target {
-        return Target(url: url, session: session)
+    public func target(url: String) -> FlowTarget {
+        return FlowTarget(url: url, session: session)
     }
 
     func invalidateSession() {
@@ -34,22 +34,14 @@ public final class Flow {
     }
 }
 
-public enum Result<T> {
 
-    case Success(T?, NSHTTPURLResponse)
+public enum FlowError: ErrorType {
+    case UnsupportedResponse(NSURLResponse)
     case CommunicationError(ErrorType?)
-    case UnsupportedResponse(NSURLResponse?)
-    case ParseError(ErrorType?)
     case ClientError(NSHTTPURLResponse)
     case ServerError(NSHTTPURLResponse)
     case UnsupportedStatusCode(NSHTTPURLResponse)
-
-    public func isSuccess() -> Bool {
-        switch self {
-            case .Success: return true
-            default: return false
-        }
-    }
+    case UnknownError
 }
 
 
