@@ -7,20 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38E8B05336E17D3868242860 /* FlowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8B193983CD85710E163DE /* FlowResult.swift */; };
+		38E8B17B9B4AAFA2E0E43AE7 /* FlowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8BF9C11E484A36C9192CA /* FlowResponse.swift */; };
+		38E8B7F1CA64DD6F58088A93 /* FlowResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8B193983CD85710E163DE /* FlowResult.swift */; };
+		38E8B874F4930A4F86FFEDB9 /* FlowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8BF9C11E484A36C9192CA /* FlowResponse.swift */; };
 		F85ABE3B1C4A8DE0009A6586 /* Flow.h in Headers */ = {isa = PBXBuildFile; fileRef = F85ABE3A1C4A8DE0009A6586 /* Flow.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F85ABE421C4A8DE0009A6586 /* Flow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABE371C4A8DE0009A6586 /* Flow.framework */; };
 		F85ABE471C4A8DE0009A6586 /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABE461C4A8DE0009A6586 /* FlowTests.swift */; };
 		F85ABEBC1C4AFC12009A6586 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABEBB1C4AFC12009A6586 /* SwiftyJSON.framework */; };
-		F85ABEBF1C4AFC67009A6586 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABEBD1C4AFC67009A6586 /* Nimble.framework */; };
-		F85ABEC01C4AFC67009A6586 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABEBE1C4AFC67009A6586 /* Quick.framework */; };
 		F85ABEC71C4B0223009A6586 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC21C4B0223009A6586 /* Flow.swift */; };
 		F85ABEC81C4B0223009A6586 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC21C4B0223009A6586 /* Flow.swift */; };
 		F85ABEC91C4B0223009A6586 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC31C4B0223009A6586 /* Queue.swift */; };
 		F85ABECA1C4B0223009A6586 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC31C4B0223009A6586 /* Queue.swift */; };
-		F85ABECB1C4B0223009A6586 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* Request.swift */; };
-		F85ABECC1C4B0223009A6586 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* Request.swift */; };
-		F85ABECF1C4B0223009A6586 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC61C4B0223009A6586 /* Target.swift */; };
-		F85ABED01C4B0223009A6586 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC61C4B0223009A6586 /* Target.swift */; };
+		F85ABECB1C4B0223009A6586 /* FlowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* FlowRequest.swift */; };
+		F85ABECC1C4B0223009A6586 /* FlowRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* FlowRequest.swift */; };
+		F85ABECF1C4B0223009A6586 /* FlowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC61C4B0223009A6586 /* FlowTarget.swift */; };
+		F85ABED01C4B0223009A6586 /* FlowTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC61C4B0223009A6586 /* FlowTarget.swift */; };
 		F85ABED11C4B04B1009A6586 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABEBB1C4AFC12009A6586 /* SwiftyJSON.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		38E8B193983CD85710E163DE /* FlowResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowResult.swift; sourceTree = "<group>"; };
+		38E8BF9C11E484A36C9192CA /* FlowResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowResponse.swift; sourceTree = "<group>"; };
 		F85ABE371C4A8DE0009A6586 /* Flow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Flow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85ABE3A1C4A8DE0009A6586 /* Flow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Flow.h; sourceTree = "<group>"; };
 		F85ABE3C1C4A8DE0009A6586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,8 +50,8 @@
 		F85ABEBE1C4AFC67009A6586 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "Carthage/Checkouts/Quick/build/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
 		F85ABEC21C4B0223009A6586 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		F85ABEC31C4B0223009A6586 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		F85ABEC41C4B0223009A6586 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		F85ABEC61C4B0223009A6586 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
+		F85ABEC41C4B0223009A6586 /* FlowRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowRequest.swift; sourceTree = "<group>"; };
+		F85ABEC61C4B0223009A6586 /* FlowTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowTarget.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +68,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F85ABED11C4B04B1009A6586 /* SwiftyJSON.framework in Frameworks */,
-				F85ABEBF1C4AFC67009A6586 /* Nimble.framework in Frameworks */,
-				F85ABEC01C4AFC67009A6586 /* Quick.framework in Frameworks */,
 				F85ABE421C4A8DE0009A6586 /* Flow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,10 +99,12 @@
 			children = (
 				F85ABEC21C4B0223009A6586 /* Flow.swift */,
 				F85ABEC31C4B0223009A6586 /* Queue.swift */,
-				F85ABEC41C4B0223009A6586 /* Request.swift */,
-				F85ABEC61C4B0223009A6586 /* Target.swift */,
+				F85ABEC41C4B0223009A6586 /* FlowRequest.swift */,
+				F85ABEC61C4B0223009A6586 /* FlowTarget.swift */,
 				F85ABE3A1C4A8DE0009A6586 /* Flow.h */,
 				F85ABE3C1C4A8DE0009A6586 /* Info.plist */,
+				38E8BF9C11E484A36C9192CA /* FlowResponse.swift */,
+				38E8B193983CD85710E163DE /* FlowResult.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -233,9 +237,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F85ABEC71C4B0223009A6586 /* Flow.swift in Sources */,
-				F85ABECB1C4B0223009A6586 /* Request.swift in Sources */,
+				F85ABECB1C4B0223009A6586 /* FlowRequest.swift in Sources */,
 				F85ABEC91C4B0223009A6586 /* Queue.swift in Sources */,
-				F85ABECF1C4B0223009A6586 /* Target.swift in Sources */,
+				F85ABECF1C4B0223009A6586 /* FlowTarget.swift in Sources */,
+				38E8B17B9B4AAFA2E0E43AE7 /* FlowResponse.swift in Sources */,
+				38E8B05336E17D3868242860 /* FlowResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,11 +249,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F85ABED01C4B0223009A6586 /* Target.swift in Sources */,
+				F85ABED01C4B0223009A6586 /* FlowTarget.swift in Sources */,
 				F85ABE471C4A8DE0009A6586 /* FlowTests.swift in Sources */,
-				F85ABECC1C4B0223009A6586 /* Request.swift in Sources */,
+				F85ABECC1C4B0223009A6586 /* FlowRequest.swift in Sources */,
 				F85ABECA1C4B0223009A6586 /* Queue.swift in Sources */,
 				F85ABEC81C4B0223009A6586 /* Flow.swift in Sources */,
+				38E8B874F4930A4F86FFEDB9 /* FlowResponse.swift in Sources */,
+				38E8B7F1CA64DD6F58088A93 /* FlowResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

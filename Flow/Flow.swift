@@ -45,7 +45,7 @@ public enum FlowError: ErrorType {
 }
 
 
-// MARK: NSHTTPURLResponse - Extenstion
+// MARK: NSHTTPURLResponse - Extension
 
 public extension NSHTTPURLResponse {
 
@@ -53,7 +53,7 @@ public extension NSHTTPURLResponse {
         return (self.statusCode / 100) == 2
     }
 
-    public func headerValueForKey(key: String) -> String {
-        return self.allHeaderFields[key] as! String
+    public func headerValueForKey(key: String) -> String? {
+        return self.allHeaderFields[key] as? String
     }
 }
