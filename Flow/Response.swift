@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct FlowResponse<T> {
+public struct Response<T> {
 
     let httpResponse: NSHTTPURLResponse
     let parsedData: T?

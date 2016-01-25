@@ -1,6 +1,4 @@
 //
-//  FlowRequest.swift
-//  Flow
 //
 //  Created by Anders Carlsson on 15/01/16.
 //  Copyright © 2016 CoreDev. All rights reserved.
@@ -47,7 +45,7 @@ private enum HTTPMethod: String {
     case GET, PUT, POST, DELETE
 }
 
-public final class FlowTarget {
+public final class Target {
 
     private let url: String
     private lazy var parameters: Array<NSURLQueryItem> = []
@@ -62,24 +60,24 @@ public final class FlowTarget {
     }
 
     // MARK: Value collector methods
-    public func header(name: String, value: String) -> FlowTarget {
+    public func header(name: String, value: String) -> Target {
         headers[name] = value
         return self
     }
 
-    public func headers(headers: [String:String]) -> FlowTarget {
+    public func headers(headers: [String:String]) -> Target {
         for (name, value) in headers {
             self.headers[name] = value
         }
         return self
     }
 
-    public func parameter(name: String, value: String) -> FlowTarget {
+    public func parameter(name: String, value: String) -> Target {
         parameters.append(NSURLQueryItem(name: name, value: value))
         return self
     }
 
-    public func parameters(parameters: [String:String]) -> FlowTarget {
+    public func parameters(parameters: [String:String]) -> Target {
         for (name, value) in parameters {
             self.parameters.append(NSURLQueryItem(name: name, value: value))
         }
@@ -91,45 +89,45 @@ public final class FlowTarget {
     //MARK: request methods
 
     // Defaults to SwiftyJSON response parser
-    public func get(callback: (FlowResult<JSON>?) -> ()) -> FlowRequest {
+    public func get(callback: (Result<JSON>?) -> ()) -> Request {
         return get(SwiftyJSONParser, callback: callback)
     }
 
     // Custom response parser
-    public func get<T>(parser: (NSData?) -> (T?), callback: (FlowResult<T>?) -> ()) -> FlowRequest {
+    public func get<T>(parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
         return request(httpMethod(.GET), parser: parser, callback: callback)
     }
 
     // Defaults to UTF8StringParser response parser
-    public func post(body: NSData? = nil, callback: (FlowResult<String>?) -> ()) -> FlowRequest {
+    public func post(body: NSData? = nil, callback: (Result<String>?) -> ()) -> Request {
         self.body = body
         return post(body, parser: UTF8StringParser, callback: callback)
     }
 
     // Custom response parser
-    public func post<T>(body: NSData? = nil, parser: (NSData?) -> (T?), callback: (FlowResult<T>?) -> ()) -> FlowRequest {
+    public func post<T>(body: NSData? = nil, parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
         self.body = body
         return request(httpMethod(.POST), parser: parser, callback: callback)
     }
 
     // Defaults to UTF8StringParser response parser
-    public func put(body: NSData? = nil, callback: (FlowResult<String>?) -> ()) -> FlowRequest {
+    public func put(body: NSData? = nil, callback: (Result<String>?) -> ()) -> Request {
         return put(body, parser: UTF8StringParser, callback: callback)
     }
 
     // Custom response parser
-    public func put<T>(body: NSData? = nil, parser: (NSData?) -> (T?), callback: (FlowResult<T>?) -> ()) -> FlowRequest {
+    public func put<T>(body: NSData? = nil, parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
         self.body = body
         return request(httpMethod(.PUT), parser: parser, callback: callback)
     }
 
     // Defaults to UTF8StringParser response parser
-    public func delete(callback: (FlowResult<String>?) -> ()) -> FlowRequest {
+    public func delete(callback: (Result<String>?) -> ()) -> Request {
         return delete(UTF8StringParser, callback: callback)
     }
 
     // Custom response parser
-    public func delete<T>(parser: (NSData?) -> (T?), callback: (FlowResult<T>?) -> ()) -> FlowRequest {
+    public func delete<T>(parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
         return request(httpMethod(.DELETE), parser: parser, callback: callback)
     }
 
@@ -148,7 +146,7 @@ public final class FlowTarget {
         return request
     }
 
-    private func request<T>(request: NSURLRequest, parser: (NSData?) -> (T?), callback: (FlowResult<T>?) -> ()) -> FlowRequest {
+    private func request<T>(request: NSURLRequest, parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
 
         let sessionTask = session.dataTaskWithRequest(request) { data, response, error in
 
@@ -159,7 +157,7 @@ public final class FlowTarget {
                     Queue.background() {
                         let parsed = parser(data)
                         Queue.main() {
-                            callback(.Success(FlowResponse(httpResponse: httpResponse, parsedData: parsed, rawData: data)))
+                            callback(.Success(Response(httpResponse: httpResponse, parsedData: parsed, rawData: data)))
                         }
                     }
                 } else {
@@ -170,7 +168,7 @@ public final class FlowTarget {
 
         sessionTask.resume()
 
-        return FlowRequest(task: sessionTask)
+        return Request(task: sessionTask)
     }
 
     private func errorFromResponse(response: NSURLResponse?) -> FlowError {

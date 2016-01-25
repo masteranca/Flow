@@ -25,8 +25,8 @@ public final class Flow {
         self.session = session
     }
 
-    public func target(url: String) -> FlowTarget {
-        return FlowTarget(url: url, session: session)
+    public func target(url: String) -> Target {
+        return Target(url: url, session: session)
     }
 
     func invalidateSession() {

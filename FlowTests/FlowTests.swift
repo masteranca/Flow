@@ -20,7 +20,7 @@ class FlowTests: XCTestCase {
     func testGet() {
 
         let expectation = expectationWithDescription("Get should be successful")
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(getURL).get() {
             response in result = response
@@ -38,7 +38,7 @@ class FlowTests: XCTestCase {
         let expectation = expectationWithDescription("Post should be successful")
         let payload = "1001"
         let body = "payload=\(payload)".dataUsingEncoding(NSUTF8StringEncoding)!
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(postURL).post(body, parser: SwiftyJSONParser) { response in
             result = response
@@ -56,7 +56,7 @@ class FlowTests: XCTestCase {
 
         let expectation = expectationWithDescription("Put should be successful")
         let data = "payload".dataUsingEncoding(NSUTF8StringEncoding)
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(putURL).put(data, parser: SwiftyJSONParser) { response in
             result = response
@@ -73,7 +73,7 @@ class FlowTests: XCTestCase {
     func testDelete() {
 
         let expectation = expectationWithDescription("Delete should be successful")
-        var result: FlowResult<String>?
+        var result: Result<String>?
 
         let request = Flow().target(deleteURL).delete(){ response in
             result = response
@@ -87,7 +87,7 @@ class FlowTests: XCTestCase {
 
     func testSingleQueryParameter() {
         let expectation = expectationWithDescription("Added query parameter should be returned")
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(getURL).parameter("name", value:"value").get(){ response in
             result = response
@@ -103,7 +103,7 @@ class FlowTests: XCTestCase {
     func testMultipleQueryParamaters(){
         let expectation = expectationWithDescription("Added query parameters should be returned")
         let parameters = ["name1":"value1", "name2":"value2"]
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(getURL).parameters(parameters).get(){ response in
             result = response
@@ -121,7 +121,7 @@ class FlowTests: XCTestCase {
     func testSingleHeader() {
 
         let expectation = expectationWithDescription("Added header should be returned")
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(getURL).header("Api-Key", value: "12345").get() {
             response in result = response
@@ -139,7 +139,7 @@ class FlowTests: XCTestCase {
 
         let expectation = expectationWithDescription("Added headers should be returned")
         let headers = ["Key1": "Value1", "Key2": "Value2"]
-        var result: FlowResult<JSON>?
+        var result: Result<JSON>?
 
         let request = Flow().target(getURL).headers(headers).get() {
             response in result = response
@@ -183,7 +183,7 @@ class FlowTests: XCTestCase {
     }
 
     //MARK: Helper methods
-    func assertSuccessRequest<T>(request: FlowRequest, result: FlowResult<T>?) {
+    func assertSuccessRequest<T>(request: Request, result: Result<T>?) {
         XCTAssertTrue(request.isFinished)
         XCTAssertNotNil(result)
         if let result = result {

@@ -5,9 +5,9 @@
 
 import Foundation
 
-public enum FlowResult<T> {
+public enum Result<T> {
 
-    case Success(FlowResponse<T>?)
+    case Success(Response<T>?)
     case Failure(FlowError)
 
     public func isSuccess() -> Bool {
@@ -21,7 +21,7 @@ public enum FlowResult<T> {
         return !self.isSuccess()
     }
 
-    public var value: FlowResponse<T>? {
+    public var value: Response<T>? {
         switch self {
             case Success(let response): return response
             case Failure: return nil
