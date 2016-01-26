@@ -182,7 +182,57 @@ class FlowTests: XCTestCase {
         XCTAssertEqual(qos_class_main(), queue)
     }
 
+    func testClientError() {
+
+        assertErrorStatusCode(400){ error in
+            switch error {
+                case FlowError.ClientError(_): return true
+                default: return false
+            }
+        }
+    }
+
+
+    func testServerError() {
+
+        assertErrorStatusCode(500){ error in
+            switch error {
+                case FlowError.ServerError(_): return true
+                default: return false
+            }
+        }
+    }
+
+    func testUnsupportedStatusCode() {
+
+        assertErrorStatusCode(300){ error in
+            switch error {
+                case FlowError.UnsupportedStatusCode(_): return true
+                default: return false
+            }
+        }
+    }
+
     //MARK: Helper methods
+    func assertErrorStatusCode(code: Int, validator:(FlowError) -> (Bool)) {
+
+        let expectation = expectationWithDescription("Should be failure response")
+        let url = "http://httpbin.org/status/\(code)"
+        var result: Result<JSON>?
+
+        let request = Flow().target(url).get(){ response in
+            result = response
+            expectation.fulfill()
+        }
+
+        waitForExpectation()
+
+        XCTAssertTrue(request.isFinished)
+        XCTAssertNotNil(result)
+        XCTAssertTrue(result!.isFailure())
+        XCTAssertTrue(validator(result!.error!))
+    }
+
     func assertSuccessRequest<T>(request: Request, result: Result<T>?) {
         XCTAssertTrue(request.isFinished)
         XCTAssertNotNil(result)
