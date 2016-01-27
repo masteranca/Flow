@@ -84,7 +84,9 @@ public final class Target {
         return self
     }
 
-    //TODO: add authorization
+    // TODO:
+    // - add simple support for authorization
+    // - add request body serializer support
 
     //MARK: request methods
 
@@ -154,9 +156,9 @@ public final class Target {
                 callback(.Failure(.CommunicationError(error)))
             } else {
                 if let httpResponse = response as? NSHTTPURLResponse where httpResponse.isSuccessResponse() {
-                    Queue.background() {
+                    background() {
                         let parsed = parser(data)
-                        Queue.main() {
+                        main() {
                             callback(.Success(Response(httpResponse: httpResponse, parsedData: parsed, rawData: data)))
                         }
                     }
@@ -172,6 +174,7 @@ public final class Target {
     }
 
     private func errorFromResponse(response: NSURLResponse?) -> FlowError {
+        
         if let response = response {
             if let httpResponse = response as? NSHTTPURLResponse {
                 switch (httpResponse.statusCode / 100) {

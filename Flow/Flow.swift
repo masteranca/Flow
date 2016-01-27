@@ -8,6 +8,16 @@
 
 import Foundation
 
+
+public func main(block: dispatch_block_t) {
+    dispatch_async(dispatch_get_main_queue(), block)
+}
+
+public func background(block: dispatch_block_t) {
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0), block)
+}
+
+
 public final class Flow {
 
     private let session: NSURLSession
@@ -36,12 +46,14 @@ public final class Flow {
 
 
 public enum FlowError: ErrorType {
+    
     case UnsupportedResponse(NSURLResponse)
     case CommunicationError(ErrorType?)
     case ClientError(NSHTTPURLResponse)
     case ServerError(NSHTTPURLResponse)
     case UnsupportedStatusCode(NSHTTPURLResponse)
     case UnknownError
+
 }
 
 

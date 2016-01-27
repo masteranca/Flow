@@ -17,8 +17,6 @@
 		F85ABEBC1C4AFC12009A6586 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F85ABEBB1C4AFC12009A6586 /* SwiftyJSON.framework */; };
 		F85ABEC71C4B0223009A6586 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC21C4B0223009A6586 /* Flow.swift */; };
 		F85ABEC81C4B0223009A6586 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC21C4B0223009A6586 /* Flow.swift */; };
-		F85ABEC91C4B0223009A6586 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC31C4B0223009A6586 /* Queue.swift */; };
-		F85ABECA1C4B0223009A6586 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC31C4B0223009A6586 /* Queue.swift */; };
 		F85ABECB1C4B0223009A6586 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* Request.swift */; };
 		F85ABECC1C4B0223009A6586 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC41C4B0223009A6586 /* Request.swift */; };
 		F85ABECF1C4B0223009A6586 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85ABEC61C4B0223009A6586 /* Target.swift */; };
@@ -49,7 +47,6 @@
 		F85ABEBD1C4AFC67009A6586 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Carthage/Checkouts/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
 		F85ABEBE1C4AFC67009A6586 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "Carthage/Checkouts/Quick/build/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
 		F85ABEC21C4B0223009A6586 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
-		F85ABEC31C4B0223009A6586 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		F85ABEC41C4B0223009A6586 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		F85ABEC61C4B0223009A6586 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,13 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				F85ABEC21C4B0223009A6586 /* Flow.swift */,
-				F85ABEC31C4B0223009A6586 /* Queue.swift */,
 				F85ABEC41C4B0223009A6586 /* Request.swift */,
 				F85ABEC61C4B0223009A6586 /* Target.swift */,
 				F85ABE3A1C4A8DE0009A6586 /* Flow.h */,
-				F85ABE3C1C4A8DE0009A6586 /* Info.plist */,
 				38E8BF9C11E484A36C9192CA /* Response.swift */,
 				38E8B193983CD85710E163DE /* Result.swift */,
+				F85ABE3C1C4A8DE0009A6586 /* Info.plist */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -238,7 +234,6 @@
 			files = (
 				F85ABEC71C4B0223009A6586 /* Flow.swift in Sources */,
 				F85ABECB1C4B0223009A6586 /* Request.swift in Sources */,
-				F85ABEC91C4B0223009A6586 /* Queue.swift in Sources */,
 				F85ABECF1C4B0223009A6586 /* Target.swift in Sources */,
 				38E8B17B9B4AAFA2E0E43AE7 /* Response.swift in Sources */,
 				38E8B05336E17D3868242860 /* Result.swift in Sources */,
@@ -252,7 +247,6 @@
 				F85ABED01C4B0223009A6586 /* Target.swift in Sources */,
 				F85ABE471C4A8DE0009A6586 /* FlowTests.swift in Sources */,
 				F85ABECC1C4B0223009A6586 /* Request.swift in Sources */,
-				F85ABECA1C4B0223009A6586 /* Queue.swift in Sources */,
 				F85ABEC81C4B0223009A6586 /* Flow.swift in Sources */,
 				38E8B874F4930A4F86FFEDB9 /* Response.swift in Sources */,
 				38E8B7F1CA64DD6F58088A93 /* Result.swift in Sources */,
@@ -369,6 +363,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Flow/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.coredev.Flow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -387,6 +382,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Flow/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.coredev.Flow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -398,6 +394,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = FlowTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.coredev.FlowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -408,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = FlowTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = se.coredev.FlowTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
