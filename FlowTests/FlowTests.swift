@@ -17,7 +17,7 @@ class FlowTests: XCTestCase {
     private let putURL = "http://httpbin.org/put"
     private let deleteURL = "http://httpbin.org/delete"
 
-    
+
     func testGet() {
 
         let expectation = expectationWithDescription("Get should be successful")
@@ -41,8 +41,8 @@ class FlowTests: XCTestCase {
         let body = "payload=\(payload)".dataUsingEncoding(NSUTF8StringEncoding)!
         var result: Result<JSON>?
 
-        let request = Flow().target(postURL).post(body, parser: SwiftyJSONParser) { response in
-            result = response
+        let request = Flow().target(postURL).post(body, parser: SwiftyJSONParser) {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -59,8 +59,8 @@ class FlowTests: XCTestCase {
         let data = "payload".dataUsingEncoding(NSUTF8StringEncoding)
         var result: Result<JSON>?
 
-        let request = Flow().target(putURL).put(data, parser: SwiftyJSONParser) { response in
-            result = response
+        let request = Flow().target(putURL).put(data, parser: SwiftyJSONParser) {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -76,8 +76,8 @@ class FlowTests: XCTestCase {
         let expectation = expectationWithDescription("Delete should be successful")
         var result: Result<String>?
 
-        let request = Flow().target(deleteURL).delete(){ response in
-            result = response
+        let request = Flow().target(deleteURL).delete() {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -90,8 +90,8 @@ class FlowTests: XCTestCase {
         let expectation = expectationWithDescription("Added query parameter should be returned")
         var result: Result<JSON>?
 
-        let request = Flow().target(getURL).parameter("name", value:"value").get(){ response in
-            result = response
+        let request = Flow().target(getURL).parameter("name", value: "value").get() {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -101,13 +101,13 @@ class FlowTests: XCTestCase {
         XCTAssertEqual(result?.value?.parsedData?["args"]["name"].string, "value")
     }
 
-    func testMultipleQueryParamaters(){
+    func testMultipleQueryParamaters() {
         let expectation = expectationWithDescription("Added query parameters should be returned")
-        let parameters = ["name1":"value1", "name2":"value2"]
+        let parameters = ["name1": "value1", "name2": "value2"]
         var result: Result<JSON>?
 
-        let request = Flow().target(getURL).parameters(parameters).get(){ response in
-            result = response
+        let request = Flow().target(getURL).parameters(parameters).get() {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -158,9 +158,13 @@ class FlowTests: XCTestCase {
 
         let expectation = expectationWithDescription("Parsing should be done on a background thread")
         var queue: qos_class_t = qos_class_t.init(0)
-        let parser: (NSData?) -> (Void) = { data in queue = qos_class_self() }
+        let parser: (NSData?) -> (Void) = {
+            data in queue = qos_class_self()
+        }
 
-        let request = Flow().target(getURL).get(parser) { response in expectation.fulfill() }
+        let request = Flow().target(getURL).get(parser) {
+            response in expectation.fulfill()
+        }
 
         waitForExpectation()
 
@@ -185,8 +189,8 @@ class FlowTests: XCTestCase {
 
     func testClientError() {
 
-        assertErrorStatusCode(400){ error in
-            switch error {
+        assertErrorStatusCode(400) {
+            error in switch error {
                 case FlowError.ClientError(_): return true
                 default: return false
             }
@@ -196,8 +200,8 @@ class FlowTests: XCTestCase {
 
     func testServerError() {
 
-        assertErrorStatusCode(500){ error in
-            switch error {
+        assertErrorStatusCode(500) {
+            error in switch error {
                 case FlowError.ServerError(_): return true
                 default: return false
             }
@@ -206,8 +210,8 @@ class FlowTests: XCTestCase {
 
     func testUnsupportedStatusCode() {
 
-        assertErrorStatusCode(300){ error in
-            switch error {
+        assertErrorStatusCode(300) {
+            error in switch error {
                 case FlowError.UnsupportedStatusCode(_): return true
                 default: return false
             }
@@ -215,14 +219,14 @@ class FlowTests: XCTestCase {
     }
 
     //MARK: Helper methods
-    func assertErrorStatusCode(code: Int, validator:(FlowError) -> (Bool)) {
+    func assertErrorStatusCode(code: Int, validator: (FlowError) -> (Bool)) {
 
         let expectation = expectationWithDescription("Should be failure response")
         let url = "http://httpbin.org/status/\(code)"
         var result: Result<JSON>?
 
-        let request = Flow().target(url).get(){ response in
-            result = response
+        let request = Flow().target(url).get() {
+            response in result = response
             expectation.fulfill()
         }
 
@@ -244,7 +248,7 @@ class FlowTests: XCTestCase {
         }
     }
 
-    func waitForExpectation(){
+    func waitForExpectation() {
         waitForExpectationsWithTimeout(10.0, handler: nil)
     }
 }

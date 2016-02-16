@@ -46,7 +46,7 @@ public final class Flow {
 
 
 public enum FlowError: ErrorType {
-    
+
     case UnsupportedResponse(NSURLResponse)
     case CommunicationError(ErrorType?)
     case ClientError(NSHTTPURLResponse)

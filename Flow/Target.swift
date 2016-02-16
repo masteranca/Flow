@@ -150,7 +150,8 @@ public final class Target {
 
     private func request<T>(request: NSURLRequest, parser: (NSData?) -> (T?), callback: (Result<T>?) -> ()) -> Request {
 
-        let sessionTask = session.dataTaskWithRequest(request) { data, response, error in
+        let sessionTask = session.dataTaskWithRequest(request) {
+            data, response, error in
 
             if let error = error {
                 callback(.Failure(.CommunicationError(error)))
@@ -174,7 +175,7 @@ public final class Target {
     }
 
     private func errorFromResponse(response: NSURLResponse?) -> FlowError {
-        
+
         if let response = response {
             if let httpResponse = response as? NSHTTPURLResponse {
                 switch (httpResponse.statusCode / 100) {
